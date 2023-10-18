@@ -8,6 +8,7 @@ import { User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
 import mongoose from 'mongoose';
 import aqp from 'api-query-params';
+import { Company } from './dto/company.dto';
 
 @Injectable()
 export class JobsService {
@@ -68,6 +69,15 @@ export class JobsService {
       return `Not found job`;
     }
   }
+
+  async findAllbyCompany(company: Company) {
+      //return user;
+      return await this.jobModel.find({
+        company:company
+      })
+      .sort("-createdAt");
+  }
+
 
   async update(id: string, updateJobDto: UpdateJobDto,@User() user:IUser) {
     let newJob = await this.jobModel.updateOne(

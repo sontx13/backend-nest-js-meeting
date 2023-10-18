@@ -5,6 +5,7 @@ import { UpdateJobDto } from './dto/update-job.dto';
 import { Public, ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
 import { ApiTags } from '@nestjs/swagger';
+import { Company } from './dto/company.dto';
 
 @ApiTags('jobs')
 @Controller('jobs')
@@ -33,6 +34,14 @@ export class JobsController {
   @ResponseMessage("Fetch a job by id")
   findOne(@Param('id') id: string) {
     return this.jobsService.findOne(id);
+  }
+
+  @Post('by-company')
+  @Public()
+  @ResponseMessage("Get Job by Company")
+  findAllbyCompany(@Body() company: Company) {
+    //return company;
+    return this.jobsService.findAllbyCompany(company);
   }
 
   @Patch(':id')
