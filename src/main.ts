@@ -7,7 +7,7 @@ import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { TransformInterceptor } from './core/transform.interceptor';
 import cookieParser from 'cookie-parser';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+// import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   //const app = await NestFactory.create(AppModule);
@@ -45,29 +45,29 @@ async function bootstrap() {
   });
 
   //config Swagger
-  const config = new DocumentBuilder()
-    .setTitle('NestJS Sontx APIs Document')
-    .setDescription('All Modules APIs')
-    .setVersion('1.0')
-    //.addTag('cats')
-    .addBearerAuth(
-      {
-      type: 'http',
-      scheme: 'Bearer',
-      bearerFormat: 'JWT',
-      in: 'header',
-      },
-      'token',
-      )
-    .addSecurityRequirements('token')      
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document, {
-      swaggerOptions: {
-        persistAuthorization: true,
-      }
-    }
-  );
+  // const config = new DocumentBuilder()
+  //   .setTitle('NestJS Sontx APIs Document')
+  //   .setDescription('All Modules APIs')
+  //   .setVersion('1.0')
+  //   //.addTag('cats')
+  //   .addBearerAuth(
+  //     {
+  //     type: 'http',
+  //     scheme: 'Bearer',
+  //     bearerFormat: 'JWT',
+  //     in: 'header',
+  //     },
+  //     'token',
+  //     )
+  //   .addSecurityRequirements('token')      
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, config);
+  // SwaggerModule.setup('swagger', app, document, {
+  //     swaggerOptions: {
+  //       persistAuthorization: true,
+  //     }
+  //   }
+  // );
     
 
   await app.listen(configService.get<string>('PORT'));

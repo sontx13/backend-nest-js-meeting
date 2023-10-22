@@ -6,10 +6,10 @@ import { RegisterUserDto, UserLoginDto } from 'src/users/dto/create-user.dto';
 import { Request as RequestEx, Response } from 'express';
 import { IUser } from 'src/users/users.interface';
 import { RolesService } from 'src/roles/roles.service';
-import { ApiTags } from '@nestjs/swagger';
-import { ApiBody } from '@nestjs/swagger';
+// import { ApiTags } from '@nestjs/swagger';
+// import { ApiBody } from '@nestjs/swagger';
 
-@ApiTags('auth')
+//@ApiTags('auth')
 @Controller("auth")
 export class AuthController {
   constructor(
@@ -20,7 +20,7 @@ export class AuthController {
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('/login')
-  @ApiBody({ type: UserLoginDto, })
+  //@ApiBody({ type: UserLoginDto, })
   @ResponseMessage("User Login")
   handleLogin(@Request() req, @Res({ passthrough: true }) response: Response){
     return this.authService.login(req.user,response);
