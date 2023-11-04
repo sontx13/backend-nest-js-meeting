@@ -26,6 +26,7 @@ const subscribers_module_1 = require("./subscribers/subscribers.module");
 const mail_module_1 = require("./mail/mail.module");
 const schedule_1 = require("@nestjs/schedule");
 const health_module_1 = require("./health/health.module");
+const votes_module_1 = require("./votes/votes.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -58,7 +59,8 @@ exports.AppModule = AppModule = __decorate([
             databases_module_1.DatabasesModule,
             subscribers_module_1.SubscribersModule,
             mail_module_1.MailModule,
-            health_module_1.HealthModule
+            health_module_1.HealthModule,
+            votes_module_1.VotesModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
