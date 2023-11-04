@@ -3,7 +3,7 @@ import { IUser } from 'src/users/users.interface';
 import { Vote, VoteDocument } from './schemas/vote.schema';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import mongoose from 'mongoose';
-import { Job } from './dto/company.dto';
+import { Job } from './dto/vote-job.dto';
 export declare class VotesService {
     private voteModel;
     constructor(voteModel: SoftDeleteModel<VoteDocument>);

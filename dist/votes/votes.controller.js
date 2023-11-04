@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const votes_service_1 = require("./votes.service");
 const create_vote_dto_1 = require("./dto/create-vote.dto");
 const customize_1 = require("../decorator/customize");
-const company_dto_1 = require("./dto/company.dto");
+const vote_job_dto_1 = require("./dto/vote-job.dto");
 let VotesController = class VotesController {
     constructor(votesService) {
         this.votesService = votesService;
@@ -56,7 +56,7 @@ __decorate([
     (0, customize_1.ResponseMessage)("Get Votes by job"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [company_dto_1.Job]),
+    __metadata("design:paramtypes", [vote_job_dto_1.Job]),
     __metadata("design:returntype", void 0)
 ], VotesController.prototype, "findAllbyJob", null);
 __decorate([

@@ -4,6 +4,8 @@ import { CreateResumeDto, CreateUserCVDto } from './dto/create-resume.dto';
 import { UpdateResumeDto } from './dto/update-resume.dto';
 import { ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
+import { Job } from 'src/votes/dto/vote-job.dto';
+
 //import { ApiTags } from '@nestjs/swagger';
 
 //@ApiTags('resumes')
@@ -21,6 +23,12 @@ export class ResumesController {
   @ResponseMessage("Get Resumes by User")
   findAllbyUser(@User() user:IUser) {
     return this.resumesService.findAllbyUser(user);
+  }
+
+  @Post('by-job')
+  @ResponseMessage("Get Votes by job")
+  findAllbyJob(@Body() job: Job) {
+    return this.resumesService.findAllbyJob(job);
   }
 
   @Get()

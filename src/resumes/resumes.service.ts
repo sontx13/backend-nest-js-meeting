@@ -7,6 +7,7 @@ import { Resume, ResumeDocument } from './schemas/resume.schema';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import mongoose from 'mongoose';
 import aqp from 'api-query-params';
+import { Job } from 'src/votes/dto/vote-job.dto';
 
 @Injectable()
 export class ResumesService {
@@ -89,6 +90,25 @@ export class ResumesService {
       //return user;
       return await this.resumeModel.find({
         userId:user._id
+      })
+      .sort("-createdAt")
+      .populate([
+      {
+      path: "companyId",
+      select: { name: 1 }
+      },
+      {
+      path: "jobId",
+      select: { name: 1 }
+      }
+      ])
+
+  }
+
+   async findAllbyJob(job: Job) {
+      //return user;
+      return await this.resumeModel.find({
+        jobId:job._id
       })
       .sort("-createdAt")
       .populate([

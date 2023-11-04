@@ -27,6 +27,7 @@
 import { ResumesService } from './resumes.service';
 import { CreateUserCVDto } from './dto/create-resume.dto';
 import { IUser } from 'src/users/users.interface';
+import { Job } from 'src/votes/dto/vote-job.dto';
 export declare class ResumesController {
     private readonly resumesService;
     constructor(resumesService: ResumesService);
@@ -35,6 +36,13 @@ export declare class ResumesController {
         createdAt: Date;
     }>;
     findAllbyUser(user: IUser): Promise<Omit<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./schemas/resume.schema").Resume> & import("./schemas/resume.schema").Resume & {
+        _id: import("mongoose").Types.ObjectId;
+    }> & import("mongoose").Document<unknown, {}, import("./schemas/resume.schema").Resume> & import("./schemas/resume.schema").Resume & {
+        _id: import("mongoose").Types.ObjectId;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>, never>[]>;
+    findAllbyJob(job: Job): Promise<Omit<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("./schemas/resume.schema").Resume> & import("./schemas/resume.schema").Resume & {
         _id: import("mongoose").Types.ObjectId;
     }> & import("mongoose").Document<unknown, {}, import("./schemas/resume.schema").Resume> & import("./schemas/resume.schema").Resume & {
         _id: import("mongoose").Types.ObjectId;

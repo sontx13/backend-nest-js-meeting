@@ -4,7 +4,7 @@ import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
 import { ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
-import { Job } from './dto/company.dto';
+import { Job } from './dto/vote-job.dto';
 //import { ApiTags } from '@nestjs/swagger';
 
 //@ApiTags('votes')

@@ -22,4 +22,4 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'Id Company không được để trống' }),
     __metadata("design:type", mongoose_1.default.Schema.Types.ObjectId)
 ], Job.prototype, "_id", void 0);
-//# sourceMappingURL=company.dto.js.map
+//# sourceMappingURL=vote-job.dto.js.map

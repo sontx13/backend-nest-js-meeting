@@ -8,7 +8,7 @@ import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import mongoose from 'mongoose';
 import aqp from 'api-query-params';
 import { User } from 'src/decorator/customize';
-import { Job } from './dto/company.dto';
+import { Job } from './dto/vote-job.dto';
 
 @Injectable()
 export class VotesService {

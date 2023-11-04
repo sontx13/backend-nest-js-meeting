@@ -3,6 +3,7 @@ import { IUser } from 'src/users/users.interface';
 import { Resume, ResumeDocument } from './schemas/resume.schema';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import mongoose from 'mongoose';
+import { Job } from 'src/votes/dto/vote-job.dto';
 export declare class ResumesService {
     private resumeModel;
     constructor(resumeModel: SoftDeleteModel<ResumeDocument>);
@@ -41,6 +42,13 @@ export declare class ResumesService {
         _id: mongoose.Types.ObjectId;
     }, "findOne">;
     findAllbyUser(user: IUser): Promise<Omit<mongoose.Document<unknown, {}, mongoose.Document<unknown, {}, Resume> & Resume & {
+        _id: mongoose.Types.ObjectId;
+    }> & mongoose.Document<unknown, {}, Resume> & Resume & {
+        _id: mongoose.Types.ObjectId;
+    } & Required<{
+        _id: mongoose.Types.ObjectId;
+    }>, never>[]>;
+    findAllbyJob(job: Job): Promise<Omit<mongoose.Document<unknown, {}, mongoose.Document<unknown, {}, Resume> & Resume & {
         _id: mongoose.Types.ObjectId;
     }> & mongoose.Document<unknown, {}, Resume> & Resume & {
         _id: mongoose.Types.ObjectId;

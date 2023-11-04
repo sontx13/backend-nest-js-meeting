@@ -27,7 +27,7 @@
 import { VotesService } from './votes.service';
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { IUser } from 'src/users/users.interface';
-import { Job } from './dto/company.dto';
+import { Job } from './dto/vote-job.dto';
 export declare class VotesController {
     private readonly votesService;
     constructor(votesService: VotesService);

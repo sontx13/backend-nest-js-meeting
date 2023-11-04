@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const resumes_service_1 = require("./resumes.service");
 const create_resume_dto_1 = require("./dto/create-resume.dto");
 const customize_1 = require("../decorator/customize");
+const vote_job_dto_1 = require("../votes/dto/vote-job.dto");
 let ResumesController = class ResumesController {
     constructor(resumesService) {
         this.resumesService = resumesService;
@@ -26,6 +27,9 @@ let ResumesController = class ResumesController {
     }
     findAllbyUser(user) {
         return this.resumesService.findAllbyUser(user);
+    }
+    findAllbyJob(job) {
+        return this.resumesService.findAllbyJob(job);
     }
     findAll(currentpage, limit, qs) {
         return this.resumesService.findAll(+currentpage, +limit, qs);
@@ -58,6 +62,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], ResumesController.prototype, "findAllbyUser", null);
+__decorate([
+    (0, common_1.Post)('by-job'),
+    (0, customize_1.ResponseMessage)("Get Votes by job"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [vote_job_dto_1.Job]),
+    __metadata("design:returntype", void 0)
+], ResumesController.prototype, "findAllbyJob", null);
 __decorate([
     (0, common_1.Get)(),
     (0, customize_1.ResponseMessage)("Fetch all resumes with paginate"),

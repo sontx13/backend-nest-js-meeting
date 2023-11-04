@@ -105,6 +105,22 @@ let ResumesService = class ResumesService {
             }
         ]);
     }
+    async findAllbyJob(job) {
+        return await this.resumeModel.find({
+            jobId: job._id
+        })
+            .sort("-createdAt")
+            .populate([
+            {
+                path: "companyId",
+                select: { name: 1 }
+            },
+            {
+                path: "jobId",
+                select: { name: 1 }
+            }
+        ]);
+    }
     async update(id, status, user) {
         if (mongoose_2.default.Types.ObjectId.isValid(id)) {
             let resume = await this.resumeModel.updateOne({ _id: id }, {
