@@ -18,6 +18,7 @@ import { MailModule } from './mail/mail.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HealthModule } from './health/health.module';
 import { VotesModule } from './votes/votes.module';
+import { ResultsModule } from './results/results.module';
 
 @Module({
   //MongooseModule.forRoot('mongodb+srv://sontx13:Sonphuong1710@cluster0.bp5irmg.mongodb.net/?retryWrites=true&w=majority')
@@ -49,7 +50,8 @@ import { VotesModule } from './votes/votes.module';
             SubscribersModule,
             MailModule,
             HealthModule,
-            VotesModule  
+            VotesModule,
+            ResultsModule  
             ],
   controllers: [AppController],
   providers: [AppService],
