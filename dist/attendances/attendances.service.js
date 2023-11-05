@@ -15,30 +15,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VotesService = void 0;
+exports.AttendancesService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const vote_schema_1 = require("./schemas/vote.schema");
+const attendance_schema_1 = require("./schemas/attendance.schema");
 const mongoose_2 = __importDefault(require("mongoose"));
 const api_query_params_1 = __importDefault(require("api-query-params"));
-let VotesService = class VotesService {
-    constructor(voteModel) {
-        this.voteModel = voteModel;
+let AttendancesService = class AttendancesService {
+    constructor(attendanceModel) {
+        this.attendanceModel = attendanceModel;
     }
-    async create(createVoteDto, user) {
-        let Vote = await this.voteModel.create({
-            question: createVoteDto.question,
-            status: "PENDING",
-            companyId: createVoteDto.companyId,
-            jobId: createVoteDto.jobId,
-            createdBy: {
-                _id: user._id,
-                email: user.email
-            }
+    async create(createAttendanceDto) {
+        let Attendance = await this.attendanceModel.create({
+            name: createAttendanceDto.name,
+            access_token: createAttendanceDto.access_token,
+            code: createAttendanceDto.code,
+            latitude: createAttendanceDto.latitude,
+            longitude: createAttendanceDto.longitude,
+            isActive: createAttendanceDto.isActive,
+            timestamp: createAttendanceDto.timestamp,
+            companyId: createAttendanceDto.companyId,
+            jobId: createAttendanceDto.jobId
         });
         return {
-            _id: Vote === null || Vote === void 0 ? void 0 : Vote._id,
-            createdAt: Vote === null || Vote === void 0 ? void 0 : Vote.createdAt
+            _id: Attendance === null || Attendance === void 0 ? void 0 : Attendance._id,
+            createdAt: Attendance === null || Attendance === void 0 ? void 0 : Attendance.createdAt
         };
     }
     async findAll(currentpage, limit, qs) {
@@ -47,9 +48,9 @@ let VotesService = class VotesService {
         delete filter.pageSize;
         let offset = (+currentpage - 1) * (+limit);
         let defaultLimit = +limit ? +limit : 10;
-        const totalItems = (await this.voteModel.find(filter)).length;
+        const totalItems = (await this.attendanceModel.find(filter)).length;
         const totalPages = Math.ceil(totalItems / defaultLimit);
-        const result = await this.voteModel.find(filter)
+        const result = await this.attendanceModel.find(filter)
             .skip(offset)
             .limit(defaultLimit)
             .sort(sort)
@@ -68,17 +69,17 @@ let VotesService = class VotesService {
     }
     findOne(id) {
         if (mongoose_2.default.Types.ObjectId.isValid(id)) {
-            let vote = this.voteModel.findOne({
+            let attendance = this.attendanceModel.findOne({
                 _id: id
             });
-            return vote;
+            return attendance;
         }
         else {
             throw new common_1.BadRequestException(`id: ${id} không tồn tại!`);
         }
     }
     async findAllbyJob(job) {
-        return await this.voteModel.find({
+        return await this.attendanceModel.find({
             jobId: job._id
         })
             .sort("-createdAt")
@@ -93,30 +94,21 @@ let VotesService = class VotesService {
             }
         ]);
     }
-    async update(id, status, user) {
-        if (mongoose_2.default.Types.ObjectId.isValid(id)) {
-            let vote = await this.voteModel.updateOne({ _id: id }, {
-                status,
-                updatedBy: {
-                    _id: user._id,
-                    email: user.email
-                }
-            });
-            return vote;
-        }
-        else {
-            throw new common_1.BadRequestException(`id: ${id} không tồn tại!`);
-        }
+    async update(id, updateAttendanceDto) {
+        let newResult = await this.attendanceModel.updateOne({ _id: id }, Object.assign({}, updateAttendanceDto));
+        return {
+            newResult
+        };
     }
     async remove(id, user) {
         if (mongoose_2.default.Types.ObjectId.isValid(id)) {
-            await this.voteModel.updateOne({ _id: id }, {
+            await this.attendanceModel.updateOne({ _id: id }, {
                 deletedBy: {
                     _id: user._id,
                     email: user.email
                 }
             });
-            return this.voteModel.softDelete({
+            return this.attendanceModel.softDelete({
                 _id: id
             });
         }
@@ -125,10 +117,10 @@ let VotesService = class VotesService {
         }
     }
 };
-exports.VotesService = VotesService;
-exports.VotesService = VotesService = __decorate([
+exports.AttendancesService = AttendancesService;
+exports.AttendancesService = AttendancesService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(vote_schema_1.Vote.name)),
+    __param(0, (0, mongoose_1.InjectModel)(attendance_schema_1.Attendance.name)),
     __metadata("design:paramtypes", [Object])
-], VotesService);
-//# sourceMappingURL=votes.service.js.map
+], AttendancesService);
+//# sourceMappingURL=attendances.service.js.map

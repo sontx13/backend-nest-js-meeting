@@ -16,5 +16,7 @@ export declare class CreateJobDto {
     startDate: Date;
     endDate: Date;
     isActive: boolean;
+    lat: string;
+    long: string;
 }
 export {};

@@ -58,5 +58,9 @@ export class    CreateJobDto {
 
     @IsNotEmpty({message: 'IsActive không được để trống'})
     isActive: boolean;
+
+    lat: string;
+    
+    long: string;
    
 }

@@ -1,35 +1,36 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateVoteDto } from './dto/create-vote.dto';
-import { UpdateVoteDto } from './dto/update-vote.dto';
+import { CreateAttendanceDto } from './dto/create-attendance.dto';
+import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 import { IUser } from 'src/users/users.interface';
 import { InjectModel } from '@nestjs/mongoose';
-import { Vote, VoteDocument } from './schemas/vote.schema';
+import { Attendance, AttendanceDocument } from './schemas/attendance.schema';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
 import mongoose from 'mongoose';
 import aqp from 'api-query-params';
 import { User } from 'src/decorator/customize';
-import { Job } from './dto/vote-job.dto';
+import { Job } from 'src/votes/dto/vote-job.dto';
 
 @Injectable()
-export class VotesService {
-  constructor(@InjectModel(Vote.name) private voteModel: SoftDeleteModel<VoteDocument>) {}
+export class AttendancesService {
+  constructor(@InjectModel(Attendance.name) private attendanceModel: SoftDeleteModel<AttendanceDocument>) {}
 
-  async create(createVoteDto: CreateVoteDto,user:IUser) {
+  async create(createAttendanceDto: CreateAttendanceDto) {
     
-    let Vote = await this.voteModel.create({
-        question: createVoteDto.question,
-        status: "PENDING",
-        companyId: createVoteDto.companyId,
-        jobId: createVoteDto.jobId,
-        createdBy:{
-          _id:user._id,
-          email:user.email
-        }
+    let Attendance = await this.attendanceModel.create({
+        name: createAttendanceDto.name,
+        access_token: createAttendanceDto.access_token,
+        code: createAttendanceDto.code,
+        latitude: createAttendanceDto.latitude,
+        longitude: createAttendanceDto.longitude,
+        isActive: createAttendanceDto.isActive,
+        timestamp: createAttendanceDto.timestamp,
+        companyId: createAttendanceDto.companyId,
+        jobId: createAttendanceDto.jobId
     })
    
     return {
-      _id: Vote?._id,
-      createdAt: Vote?.createdAt
+      _id: Attendance?._id,
+      createdAt: Attendance?.createdAt
     };
   }
 
@@ -41,10 +42,10 @@ export class VotesService {
     let offset = (+currentpage - 1) * (+limit);
     let defaultLimit = +limit ? +limit : 10;
 
-    const totalItems = (await this.voteModel.find(filter)).length;
+    const totalItems = (await this.attendanceModel.find(filter)).length;
     const totalPages = Math.ceil(totalItems / defaultLimit);
 
-    const result = await this.voteModel.find(filter)
+    const result = await this.attendanceModel.find(filter)
     .skip(offset)
     .limit(defaultLimit)
     // @ts-ignore: Unreachable code error
@@ -66,10 +67,10 @@ export class VotesService {
 
   findOne(id: string) {
     if(mongoose.Types.ObjectId.isValid(id)){
-      let vote = this.voteModel.findOne({
+      let attendance = this.attendanceModel.findOne({
         _id:id
       });
-      return vote;
+      return attendance;
     }else{
       throw new BadRequestException(`id: ${id} không tồn tại!`)
     }
@@ -77,7 +78,7 @@ export class VotesService {
 
   async findAllbyJob(job: Job) {
       //return user;
-      return await this.voteModel.find({
+      return await this.attendanceModel.find({
         jobId:job._id
       })
       .sort("-createdAt")
@@ -94,27 +95,21 @@ export class VotesService {
 
   }
 
- async update(id: string, status: string,user:IUser) {
-    if(mongoose.Types.ObjectId.isValid(id)){
-        let vote = await this.voteModel.updateOne(
-            {_id:id},
-            {
-              status,
-              updatedBy:{
-                _id:user._id,
-                email:user.email
-              }
-            }
-        )
-        return vote;
-    }else{
-      throw new BadRequestException(`id: ${id} không tồn tại!`)
-    }       
+  async update(id: string, updateAttendanceDto: UpdateAttendanceDto) {
+    let newResult = await this.attendanceModel.updateOne(
+      {_id:id},
+      {
+        ...updateAttendanceDto
+    })
+
+    return {
+      newResult
+    };
   }
 
   async remove(id: string,user:IUser) {
     if(mongoose.Types.ObjectId.isValid(id)){
-      await this.voteModel.updateOne(
+      await this.attendanceModel.updateOne(
           {_id:id},
           {
             deletedBy:{
@@ -124,7 +119,7 @@ export class VotesService {
           }
       )
 
-      return this.voteModel.softDelete({
+      return this.attendanceModel.softDelete({
         _id:id
       });
     }else{

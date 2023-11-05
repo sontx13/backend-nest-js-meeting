@@ -8,94 +8,84 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.JobSchema = exports.Job = void 0;
-const mongoose_1 = require("@nestjs/mongoose");
-let Job = class Job {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-exports.Job = Job;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AttendanceSchema = exports.Attendance = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = __importDefault(require("mongoose"));
+const company_schema_1 = require("../../companies/schemas/company.schema");
+const job_schemas_1 = require("../../jobs/schemas/job.schemas");
+let Attendance = class Attendance {
+};
+exports.Attendance = Attendance;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Job.prototype, "name", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Array)
-], Job.prototype, "skills", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: Object }),
-    __metadata("design:type", Object)
-], Job.prototype, "company", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Job.prototype, "location", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Job.prototype, "salary", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", Number)
-], Job.prototype, "quantity", void 0);
+], Attendance.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Job.prototype, "level", void 0);
+], Attendance.prototype, "access_token", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Job.prototype, "description", void 0);
+], Attendance.prototype, "code", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Date)
-], Job.prototype, "startDate", void 0);
+    __metadata("design:type", String)
+], Attendance.prototype, "latitude", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
-    __metadata("design:type", Date)
-], Job.prototype, "endDate", void 0);
+    __metadata("design:type", String)
+], Attendance.prototype, "longitude", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], Job.prototype, "isActive", void 0);
+], Attendance.prototype, "isActive", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Job.prototype, "lat", void 0);
+], Attendance.prototype, "timestamp", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Job.prototype, "long", void 0);
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: company_schema_1.Company.name }),
+    __metadata("design:type", mongoose_2.default.Schema.Types.ObjectId)
+], Attendance.prototype, "companyId", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: Object }),
-    __metadata("design:type", Object)
-], Job.prototype, "createdBy", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: Object }),
-    __metadata("design:type", Object)
-], Job.prototype, "updatedBy", void 0);
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: job_schemas_1.Job.name }),
+    __metadata("design:type", mongoose_2.default.Schema.Types.ObjectId)
+], Attendance.prototype, "jobId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: Object }),
     __metadata("design:type", Object)
-], Job.prototype, "deletedBy", void 0);
+], Attendance.prototype, "createdBy", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: Object }),
+    __metadata("design:type", Object)
+], Attendance.prototype, "updatedBy", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: Object }),
+    __metadata("design:type", Object)
+], Attendance.prototype, "deletedBy", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
-], Job.prototype, "createdAt", void 0);
+], Attendance.prototype, "createdAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
-], Job.prototype, "updatedAt", void 0);
+], Attendance.prototype, "updatedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Date)
-], Job.prototype, "deletedAt", void 0);
+], Attendance.prototype, "deletedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], Job.prototype, "isDeleted", void 0);
-exports.Job = Job = __decorate([
+], Attendance.prototype, "isDeleted", void 0);
+exports.Attendance = Attendance = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
-], Job);
-exports.JobSchema = mongoose_1.SchemaFactory.createForClass(Job);
-//# sourceMappingURL=job.schemas.js.map
+], Attendance);
+exports.AttendanceSchema = mongoose_1.SchemaFactory.createForClass(Attendance);
+//# sourceMappingURL=attendance.schema.js.map

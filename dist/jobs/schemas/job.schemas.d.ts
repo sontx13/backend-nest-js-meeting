@@ -16,6 +16,8 @@ export declare class Job {
     startDate: Date;
     endDate: Date;
     isActive: boolean;
+    lat: string;
+    long: string;
     createdBy: {
         _id: mongoose.Schema.Types.ObjectId;
         email: string;
