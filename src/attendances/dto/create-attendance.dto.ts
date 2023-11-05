@@ -19,7 +19,7 @@ export class CreateAttendanceDto {
     longitude: string;
 
     @IsNotEmpty({message: 'IsActive không được để trống'})
-    isActive: string;
+    isActive: boolean;
 
     @IsNotEmpty({message: 'Timestamp không được để trống'})
     timestamp: string;

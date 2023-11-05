@@ -18,7 +18,7 @@ export class VotesService {
     
     let Vote = await this.voteModel.create({
         question: createVoteDto.question,
-        status: "PENDING",
+        status: createVoteDto.status,
         companyId: createVoteDto.companyId,
         jobId: createVoteDto.jobId,
         createdBy:{
