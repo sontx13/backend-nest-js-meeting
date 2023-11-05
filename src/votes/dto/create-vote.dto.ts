@@ -6,7 +6,7 @@ export class CreateVoteDto {
     @IsNotEmpty({message: 'Question không được để trống'})
     question: string;
 
-    @IsNotEmpty({message: 'Question không được để trống'})
+    @IsNotEmpty({message: 'Status không được để trống'})
     status: string;
 
     @IsNotEmpty({message: 'CompanyId không được để trống'})
