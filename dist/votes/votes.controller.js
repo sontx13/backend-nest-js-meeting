@@ -53,6 +53,7 @@ __decorate([
 ], VotesController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)('by-job'),
+    (0, customize_1.Public)(),
     (0, customize_1.ResponseMessage)("Get Votes by job"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -61,6 +62,7 @@ __decorate([
 ], VotesController.prototype, "findAllbyJob", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, customize_1.Public)(),
     (0, customize_1.ResponseMessage)("Fetch all Votes with paginate"),
     __param(0, (0, common_1.Query)("current")),
     __param(1, (0, common_1.Query)("pageSize")),
@@ -71,6 +73,7 @@ __decorate([
 ], VotesController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, customize_1.Public)(),
     (0, customize_1.ResponseMessage)("Fetch a Vote by id"),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

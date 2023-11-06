@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { VotesService } from './votes.service';
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
-import { ResponseMessage, User } from 'src/decorator/customize';
+import { Public, ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
 import { Job } from './dto/vote-job.dto';
 //import { ApiTags } from '@nestjs/swagger';
@@ -19,12 +19,14 @@ export class VotesController {
   }
 
   @Post('by-job')
+  @Public()
   @ResponseMessage("Get Votes by job")
   findAllbyJob(@Body() job: Job) {
     return this.votesService.findAllbyJob(job);
   }
 
   @Get()
+  @Public()
   @ResponseMessage("Fetch all Votes with paginate")
   findAll(
     @Query("current") currentpage: string,
@@ -35,6 +37,7 @@ export class VotesController {
   }
 
   @Get(':id')
+  @Public()
   @ResponseMessage("Fetch a Vote by id")
   findOne(@Param('id') id: string) {
     return this.votesService.findOne(id);

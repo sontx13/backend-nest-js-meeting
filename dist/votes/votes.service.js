@@ -79,7 +79,8 @@ let VotesService = class VotesService {
     }
     async findAllbyJob(job) {
         return await this.voteModel.find({
-            jobId: job._id
+            jobId: job._id,
+            status: "true"
         })
             .sort("-createdAt")
             .populate([

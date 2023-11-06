@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateVoteDto.prototype, "question", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: 'Status không được để trống' }),
+    (0, class_validator_1.IsNotEmpty)({ message: 'Status không được để trống!' }),
     __metadata("design:type", String)
 ], CreateVoteDto.prototype, "status", void 0);
 __decorate([
