@@ -18,7 +18,7 @@ export class VotesService {
     
     let Vote = await this.voteModel.create({
         question: createVoteDto.question,
-        status: createVoteDto.status,
+        status: "PENDING",
         companyId: createVoteDto.companyId,
         jobId: createVoteDto.jobId,
         createdBy:{
@@ -79,7 +79,7 @@ export class VotesService {
       //return user;
       return await this.voteModel.find({
         jobId:job._id,
-        status:"true"
+        status:"REVIEWING"
       })
       .sort("-createdAt")
       .populate([

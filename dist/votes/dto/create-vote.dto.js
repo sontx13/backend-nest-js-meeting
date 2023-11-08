@@ -23,10 +23,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateVoteDto.prototype, "question", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)({ message: 'Status không được để trống!' }),
-    __metadata("design:type", String)
-], CreateVoteDto.prototype, "status", void 0);
-__decorate([
     (0, class_validator_1.IsNotEmpty)({ message: 'CompanyId không được để trống' }),
     __metadata("design:type", mongoose_1.default.Schema.Types.ObjectId)
 ], CreateVoteDto.prototype, "companyId", void 0);
