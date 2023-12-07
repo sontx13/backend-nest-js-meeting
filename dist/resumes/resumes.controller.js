@@ -64,7 +64,8 @@ __decorate([
 ], ResumesController.prototype, "findAllbyUser", null);
 __decorate([
     (0, common_1.Post)('by-job'),
-    (0, customize_1.ResponseMessage)("Get Votes by job"),
+    (0, customize_1.ResponseMessage)("Get Resumes by job"),
+    (0, customize_1.Public)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [vote_job_dto_1.Job]),
@@ -73,6 +74,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, customize_1.ResponseMessage)("Fetch all resumes with paginate"),
+    (0, customize_1.Public)(),
     __param(0, (0, common_1.Query)("current")),
     __param(1, (0, common_1.Query)("pageSize")),
     __param(2, (0, common_1.Query)()),

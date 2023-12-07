@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { ResumesService } from './resumes.service';
 import { CreateResumeDto, CreateUserCVDto } from './dto/create-resume.dto';
 import { UpdateResumeDto } from './dto/update-resume.dto';
-import { ResponseMessage, User } from 'src/decorator/customize';
+import { Public, ResponseMessage, User } from 'src/decorator/customize';
 import { IUser } from 'src/users/users.interface';
 import { Job } from 'src/votes/dto/vote-job.dto';
 
@@ -26,13 +26,15 @@ export class ResumesController {
   }
 
   @Post('by-job')
-  @ResponseMessage("Get Votes by job")
+  @ResponseMessage("Get Resumes by job")
+  @Public()
   findAllbyJob(@Body() job: Job) {
     return this.resumesService.findAllbyJob(job);
   }
 
   @Get()
   @ResponseMessage("Fetch all resumes with paginate")
+  @Public()
   findAll(
     @Query("current") currentpage: string,
     @Query("pageSize") limit: string,

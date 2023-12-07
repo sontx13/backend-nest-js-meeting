@@ -22,12 +22,14 @@ export class AttendancesController {
 
   @Post('by-job')
   @ResponseMessage("Get Attendances by job")
+  @Public()
   findAllbyJob(@Body() job: Job) {
     return this.attendancesService.findAllbyJob(job);
   }
 
   @Get()
   @ResponseMessage("Fetch all Attendances with paginate")
+  @Public()
   findAll(
     @Query("current") currentpage: string,
     @Query("pageSize") limit: string,

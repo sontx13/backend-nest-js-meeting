@@ -63,6 +63,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)(),
     (0, customize_1.ResponseMessage)("Fetch all Attendances with paginate"),
+    (0, customize_1.Public)(),
     __param(0, (0, common_1.Query)("current")),
     __param(1, (0, common_1.Query)("pageSize")),
     __param(2, (0, common_1.Query)()),
